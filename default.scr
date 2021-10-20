@@ -1,5 +1,5 @@
 [main]
-    👋🏻Welcome to cyber Sena Whatsapp Chatbot👾, in case you want to report UPI fraud transaction, please enter the below details.\n \n 👉🏻 Press 1️⃣ to Report UPI fraud for yourself.\n 👉🏻Press 2️⃣ to Report UPI fraud for others.
+    👋🏻Welcome to cyber Sena Whatsapp Chatbot👾, in case you want to report UPI fraud transaction, please enter the below details.\n \n 👉🏻 Press 1️⃣ to Report UPI fraud for yourself.\n \n 👉🏻Press  2️⃣ to Report UPI fraud for others.
         user1:1
             bot1_1:Please enter your bank registered mobile number[10 Digit numeric]📱.
                 user2:9819379850
@@ -41,7 +41,7 @@
                         user8_1:asj
                             bot9:I acknowledge & understand that NPCI is not bound by any Legal obligations to resolve highlighted concerns/refund lost money and that NPCI can’t be made party to address his/her grievances. To register your complaint please press *1*.
                                 user9_1:1
-                                    bot20:Your complaint is registered with us and reference number is XXXXX.\n \n👉🏻1️⃣ Kindly report the fraud to your Bank and file police complaint for resolution. \n👉🏻2️⃣You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260 
+                                    bot20:Your complaint is registered with us and reference number is XXXXX.\n \n👉🏻1️⃣ Kindly report the fraud to your Bank and file police complaint for resolution. \n \n👉🏻2️⃣You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260 
                                         :call default.main  
                         
                                                             

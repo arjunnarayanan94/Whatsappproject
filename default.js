@@ -6,22 +6,27 @@ function user1handler(options, event, context, callback) {
 
 function user2handler(options, event, context, callback) {
   //let phone='^([9]{1})([234789]{1})([0-9]{8})$';
-  let phone;
-  if ((phone = /^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message))) {
+  
+  if ( /^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message)) {
     console.log("test1");
     options.next_state = "bot2";
   } else {
-    context.sendmessage("Invalid phone number please try again")
+    context.sendResponse("Invalid phone number please try again");
     options.next_state = "bot1_1";
   }
   callback(options, event, context);
 }
 
 function user3handler(options, event, context, callback) {
-  let transaction;
-  if ((transaction = /^\d{12}$/.test(event.message))) {
+
+  if (/^\d{12}$/.test(event.message)) {
+
     options.next_state = "bot3";
+
   } else {
+    
+    context.sendResponse("Invalid RRN/UPI Txn ID/Bank Ref. No  please try again");
+
     options.next_state = "bot2";
   }
 
@@ -29,15 +34,16 @@ function user3handler(options, event, context, callback) {
 }
 
 function user4handler(options, event, context, callback) {
-  let calendar;
+  
   if (
-    (calendar =
       /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/.test(
         event.message
-      ))
+      )
   ) {
     options.next_state = "bot4";
+
   } else {
+    context.sendResponse("Please provide the date according to the format also not a future date");
     options.next_state = "bot3";
   }
 
@@ -49,6 +55,7 @@ function user4_1handler(options, event, context, callback) {
   if ((amount = /^\d+(\.\d{1,2})?$/.test(event.message))) {
     options.next_state = "bot10";
   } else {
+    context.sendResponse("Please provide a numbers as input");
     options.next_state = "bot4";
   }
 
@@ -96,10 +103,10 @@ function userdetailhandler2(options, event, context, callback) {
 
   let url;
   if (
-    (url =
+   
       /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(
         event.message
-      ))
+      )
   ) {
    
     console.log("Experience");
@@ -127,10 +134,13 @@ function user4_4handler(options, event, context, callback) {
 
 
   function userdetailhandler3(options, event, context, callback) {
-    let phone1;
-    if ((phone1 = /^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message))) {
+  
+    if ( /^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message)) {
       
     } else {
+
+      context.sendResponse("Please provide the valid phone number");
+
       options.next_state = "bot10_3";
     }
     callback(options, event, context);
@@ -198,6 +208,8 @@ function user8_1handler(options, event, context, callback) {
   if (/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF)$/.test(event.message)) {
     options.next_state = "bot9";
   } else {
+    context.sendResponse("Please provide the format in one of the following(jpg,jpeg,gif,doc,pdf)");
+
     options.next_state = "bot8";
   }
   callback(options, event, context);
