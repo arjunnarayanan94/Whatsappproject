@@ -1,0 +1,37 @@
+[main]
+    👋🏻Welcome to cyber Sena Whatsapp Chatbot👾, in case you want to report UPI fraud transaction, please enter the below details.\n \n 👉🏻 Press 1️⃣ to Report UPI fraud for yourself.\n 👉🏻Press 2️⃣ to Report UPI fraud for others.
+        user1:1
+            bot1_1:Please enter your bank registered mobile number[10 Digit numeric]📱.
+                user2:9819379850
+                    bot2: Okay.Please share your RRN/UPI Txn ID/Bank Ref. No (12 Digit numeric)🏦
+                        user3: 2
+                            bot3: Please enter the Transaction Date (DD/MM/YYYY)🗓️
+                                user4: abcd
+                                    bot4:What was the transaction amount(INR)💸
+                                        user4_1: 1
+                                            bot5_1:Please share the type of fraud that took place:\n1️⃣.Have you scanned any QR code? \n2️⃣.Have you clicked on any payment link?\n3️⃣.Have you sent any message from your phone?\n4️⃣.Have you downloaded any app like Anydesk or Spring SMS?\n5️⃣.Others
+                                                user4_2:1
+                                                    bot5_2:Scanned from gallery or from phone camera.(Press 1 for Scanned from gallery and 2 for phone camera) \n 1️⃣ Scanned from gallery. \n 2️⃣ for phone camera
+                                                        user4_3:1
+                                                            bot5_3:	Share the payment link💳
+                                                                user4_4:https://www.google.com
+                                                                    bot5_4:Share the mobile number where message is sent📱
+                                                                        user4_5:981937982664
+                                                                            bot5_5:Share the app name which you were ask download from the caller.
+                                                                                user4_6:fafaafa
+                                                                                    :call default.nextoption
+                                                                                    
+[nextoption]
+    bot6:Remarks (Up to 400 characters) –Brief about the incident✍🏻
+        user6_1:blalalllaallalala
+            bot7:An idea that you would want to share with us (highlight any trend/fraud app)💭
+                user7_1:jacbaj
+                    bot8:Attachments (Screenshot of the Txn history)📜
+                        user8_1:asj
+                            bot9:I acknowledge & understand that NPCI is not bound by any Legal obligations to resolve highlighted concerns/refund lost money and that NPCI can’t be made party to address his/her grievances. To register your complaint please press *1*.
+                                user9_1:1
+                                    bot10:Your complaint is registered with us and reference number is XXXXX.\n \n👉🏻1️⃣ Kindly report the fraud to your Bank and file police complaint for resolution. \n👉🏻2️⃣You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260 
+                                        :call default.main  
+                        
+                                                            
+                    
