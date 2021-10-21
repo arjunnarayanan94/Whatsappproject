@@ -129,7 +129,7 @@ function userdetailhandler2(options, event, context, callback) {
 function user4_4handler(options, event, context, callback) {
 
   if (event.message == 3) {
-    
+
     options.next_state = "bot10_3";
   }
 
@@ -137,8 +137,11 @@ function user4_4handler(options, event, context, callback) {
 }
 
 function userdetailhandler3(options, event, context, callback) {
+
   if (/^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message)) {
+
   } else {
+    
     context.sendResponse("Please provide the valid phone number");
 
     options.next_state = "bot10_3";
