@@ -112,12 +112,14 @@ function user4_3handler(options, event, context, callback) {
 
 function userdetailhandler2(options, event, context, callback) {
   if (
+
     /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(
       event.message
     )
   ) {
  
   } else {
+
     options.next_state = "bot10_2";
   }
 
@@ -125,7 +127,9 @@ function userdetailhandler2(options, event, context, callback) {
 }
 
 function user4_4handler(options, event, context, callback) {
+
   if (event.message == 3) {
+    
     options.next_state = "bot10_3";
   }
 
