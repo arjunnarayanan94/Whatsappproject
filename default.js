@@ -101,7 +101,7 @@ function userdetailhandler1(options, event, context, callback) {
 }
 
 function user4_3handler(options, event, context, callback) {
-  
+
   if (event.message == 2) {
 
     options.next_state = "bot10_2";
@@ -116,7 +116,7 @@ function userdetailhandler2(options, event, context, callback) {
       event.message
     )
   ) {
-    console.log("Experience");
+ 
   } else {
     options.next_state = "bot10_2";
   }
