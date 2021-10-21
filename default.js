@@ -180,14 +180,7 @@ function userdetailhandler5(options, event, context, callback) {
 
 }
 
-// function user4_7handler(options, event, context, callback) {
-// //   options.next_state = "bot6";
-//   console.log("testing", event.message);
-//   console.log("mini");
 
-//   callback(options, event, context);
-
-// }
 function user6_1handler(options, event, context, callback) {
 
   options.next_state = "bot7";
@@ -221,7 +214,7 @@ function user8_1handler(options, event, context, callback) {
   callback(options, event, context);
 }
 function user9_1handler(options, event, context, callback) {
-  
+
   options.next_state = "bot20";
 
   callback(options, event, context);
