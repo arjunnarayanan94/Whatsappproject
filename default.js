@@ -192,7 +192,6 @@ function user7_1handler(options, event, context, callback) {
 
   options.next_state = "bot8";
 
-  console.log("hellloooo");
 
   callback(options, event, context);
 }
