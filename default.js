@@ -150,8 +150,11 @@ function userdetailhandler3(options, event, context, callback) {
 }
 
 function user4_5handler(options, event, context, callback) {
+
   if (event.message == 4) {
+
     options.next_state = "bot10_4";
+
   }
 
   callback(options, event, context);
@@ -162,7 +165,9 @@ function userdetailhandler4(options, event, context, callback) {
 }
 
 function user4_6handler(options, event, context, callback) {
+
   if (event.message == 5) {
+
     options.next_state = "bot10_5";
   }
 
@@ -170,7 +175,9 @@ function user4_6handler(options, event, context, callback) {
 }
 
 function userdetailhandler5(options, event, context, callback) {
+
   callback(options, event, context);
+
 }
 
 // function user4_7handler(options, event, context, callback) {
@@ -182,22 +189,29 @@ function userdetailhandler5(options, event, context, callback) {
 
 // }
 function user6_1handler(options, event, context, callback) {
+
   options.next_state = "bot7";
 
   callback(options, event, context);
 }
 
 function user7_1handler(options, event, context, callback) {
+
   options.next_state = "bot8";
+
   console.log("hellloooo");
 
   callback(options, event, context);
 }
 function user8_1handler(options, event, context, callback) {
-  let attachment;
+
+
   if (/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF)$/.test(event.message)) {
+
     options.next_state = "bot9";
+
   } else {
+
     context.sendResponse(
       "Please provide the format in one of the following(jpg,jpeg,gif,doc,pdf)"
     );
@@ -207,6 +221,7 @@ function user8_1handler(options, event, context, callback) {
   callback(options, event, context);
 }
 function user9_1handler(options, event, context, callback) {
+  
   options.next_state = "bot20";
 
   callback(options, event, context);
