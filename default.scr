@@ -23,7 +23,7 @@
                                                         user11c:981937982664
                                                             :call default.nextoption
                                                 user11_3:4
-                                                    bot10_4:Have you downloaded any app like Anydesk or Spring SMS? 
+                                                    bot10_4:Share the app name which you were ask download from the caller 
                                                         user11d:fazpp
                                                             :call default.nextoption
                                                 user11_4:5
@@ -41,7 +41,7 @@
                         user8_1:asj
                             bot9:I acknowledge & understand that NPCI is not bound by any Legal obligations to resolve highlighted concerns/refund lost money and that NPCI can’t be made party to address his/her grievances. To register your complaint please press *1*.
                                 user9_1:1
-                                    bot20:Your complaint is registered with us and reference number is XXXXX.\n \n👉🏻1️⃣ Kindly report the fraud to your Bank and file police complaint for resolution. \n \n👉🏻2️⃣You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260 
+                                    bot20:Your complaint is registered with us and reference number is XXXXX.\n \n👉🏻 Kindly report the fraud to your Bank and file police complaint for resolution. \n \n👉🏻  You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260 
                                         :call default.main  
                         
                                                             
