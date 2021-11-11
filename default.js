@@ -46,9 +46,9 @@ function user3handler(options, event, context, callback) {
 function user4handler(options, event, context, callback) {
   let date = new Date();
 
-  var month = date.getMonth()+1;
+  var month = date.getMonth();
 
-  var day = date.getDate();
+  var day = date.getDate()+1;
 
   var year = date.getFullYear();
 
