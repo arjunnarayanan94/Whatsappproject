@@ -3,10 +3,6 @@ const {google} = require('googleapis')
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const cred = require('./cred.json')
 
-// const getdata = require('./default.js');
-
-
-
 const doc = new GoogleSpreadsheet('1tKIw679QfWHDjxvMiRQZNs9WGZtXOYvGMjUBtZv1jB4');
  
 let abc= async(name,email,phone,url,area,budget,details)=>{
