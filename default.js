@@ -107,6 +107,7 @@ function user4_1handler(options, event, context, callback) {
 }
 
 function user4_2handler(options, event, context, callback) {
+  
   if (event.message == 1) {
 
     let QRcode = "QRcode";
@@ -114,6 +115,13 @@ function user4_2handler(options, event, context, callback) {
     context.simpledb.roomleveldata.fraudtype = QRcode;
 
     options.next_state = "bot10_1";
+  }
+  else{
+    
+    context.sendResponse("⚠️ Please select the option number as given");
+
+    options.next_state = "bot10";
+
   }
   callback(options, event, context);
 }
@@ -135,6 +143,7 @@ function userdetailhandler1(options, event, context, callback) {
 }
 
 function user4_3handler(options, event, context, callback) {
+  
   if (event.message == 2) {
 
     let paymentlink = "PaymentLink";
@@ -143,11 +152,22 @@ function user4_3handler(options, event, context, callback) {
 
     options.next_state = "bot10_2";
   }
+  else if(event.message ==0){
+
+   
+    context.sendResponse("⚠️ Please select the option number as given");
+
+    options.next_state = "bot10";
+  
+    
+
+  }
 
   callback(options, event, context);
 }
 
 function userdetailhandler2(options, event, context, callback) {
+  
   if (
     /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(
       event.message
@@ -164,6 +184,7 @@ function userdetailhandler2(options, event, context, callback) {
 }
 
 function user4_4handler(options, event, context, callback) {
+ 
   if (event.message == 3) {
     let sendMessage = "SendMessage through phone";
 
@@ -176,6 +197,7 @@ function user4_4handler(options, event, context, callback) {
 }
 
 function userdetailhandler3(options, event, context, callback) {
+
   if (/^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message)) {
     let mobilefraud = "mobilenumberfraud";
 
@@ -191,6 +213,7 @@ function userdetailhandler3(options, event, context, callback) {
 }
 
 function user4_5handler(options, event, context, callback) {
+  
   if (event.message == 4) {
     let app = "Fraudapp";
 
@@ -212,8 +235,10 @@ function userdetailhandler4(options, event, context, callback) {
 }
 
 function user4_6handler(options, event, context, callback) {
-
+ 
   if (event.message == 5) {
+
+    console.log('Test5')
 
     let otherDetails = event.message;
 
@@ -221,17 +246,19 @@ function user4_6handler(options, event, context, callback) {
 
     options.next_state = "bot10_5";
   }
-  else
-  
-  {
+ 
+  else if(event.message ==0 || event.message>5){
 
-  context.sendResponse("⚠️ Please select the option number as given");
+   
+    context.sendResponse("⚠️ Please select the option number as given");
 
-  options.next_state = "bot10";
-
-  callback(options, event, context);
+    options.next_state = "bot10";
   }
+  
+    callback(options, event, context);
+
 }
+
 
 function userdetailhandler5(options, event, context, callback) {
 
