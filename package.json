@@ -15,6 +15,7 @@
     },
     "license": "ISC",
     "dependencies": {
+        "axios": "^0.21.4",
         "bot-script": "^3.6.4",
         "google-spreadsheet": "^3.1.15",
         "googleapis": "^87.0.0",
