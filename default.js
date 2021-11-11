@@ -222,6 +222,7 @@ function user4_6handler(options, event, context, callback) {
     options.next_state = "bot10_5";
   }
   else
+  
   {
 
   context.sendResponse("⚠️ Please select the option number as given");
