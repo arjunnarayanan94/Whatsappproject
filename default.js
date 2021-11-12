@@ -2,12 +2,23 @@ const getdata = require("./api.js");
 
 function user1handler(options, event, context, callback) {
 
-  if (event.message==1 || event.message ==2){
+  if (event.message==1){
+
+  context.simpledb.roomleveldata.UserType='Self';
+
   options.next_state = "bot1_1";
+  }
+  else if(event.message==2){
+
+    context.simpledb.roomleveldata.UserType='Others';
+
+    options.next_state = "bot1_1";
   }
 else{
   context.sendResponse("⚠️Invalid option number please try again");
+
   options.next_state = main;
+
 }
 
 
@@ -18,32 +29,32 @@ function user2handler(options, event, context, callback) {
   //let phone='^([9]{1})([234789]{1})([0-9]{8})$';
 
   if (/^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message)) {
-    let phone = event.message;
+      let phone = event.message;
 
-    context.simpledb.roomleveldata.phone = phone;
+      context.simpledb.roomleveldata.phone = phone;
 
-    options.next_state = "bot2";
+      options.next_state = "bot2";
   } else {
-    context.sendResponse("⚠️Invalid phone number please try again");
+      context.sendResponse("Invalid phone number please try again");
 
-    options.next_state = "bot1_1";
+      options.next_state = "bot1_1";
   }
   callback(options, event, context);
 }
 
 function user3handler(options, event, context, callback) {
   if (/^\d{12}$/.test(event.message)) {
-    let Ref = event.message;
+      let Ref = event.message;
 
-    context.simpledb.roomleveldata.ref = Ref;
+      context.simpledb.roomleveldata.ref = Ref;
 
-    options.next_state = "bot3";
+      options.next_state = "bot3";
   } else {
-    context.sendResponse(
-      "Invalid RRN/UPI Txn ID/Bank Ref. No  please try again"
-    );
+      context.sendResponse(
+          "Invalid RRN/UPI Txn ID/Bank Ref. No  please try again"
+      );
 
-    options.next_state = "bot2";
+      options.next_state = "bot2";
   }
 
   callback(options, event, context);
@@ -51,49 +62,33 @@ function user3handler(options, event, context, callback) {
 
 function user4handler(options, event, context, callback) {
   let date = new Date();
-
-  let month = date.getMonth()+1;
-
-  let day = date.getDate();
-
-  let year = date.getFullYear();
-
-  let currdate = day + "/" + month + "/" + year;
-
-  console.log('Check ',currdate);
-
-  //  console.log('TYpe',typeof(event.message))
- 
   let mydate = event.message;
-  console.log("Mydate ",mydate);
   if (
-    /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/.test(
-      event.message
-    )
+      /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/.test(
+          event.message
+      )
   ) {
-    if (currdate > mydate) {
-    
+      var dateParts = mydate.split("/");
+      // month is 0-based, that's why we need dataParts[1] - 1
+      var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+      if (date >= dateObject) {
+          let date1 = event.message;
 
-      let date1 = event.message;
+          context.simpledb.roomleveldata.date = date1;
 
-      context.simpledb.roomleveldata.date = date1;
+          options.next_state = "bot4";
+      } else {
+          context.sendResponse("⚠️ Future date cannot be accepted.Please try again")
 
-      options.next_state = "bot4";
-    }
-    else{
-      context.sendResponse("⚠️ Future date cannot be accepted.Please try again")
+          options.next_state = "bot3";
+      }
 
+  } else {
       options.next_state = "bot3";
-    }
+      context.sendResponse(
+          "⚠️ Please provide the date according to the format given (DD/MM/YYYY)");
 
-  } 
 
-  else {
-    options.next_state = "bot3";
-    context.sendResponse(
-      "⚠️ Please provide the date according to the format given (DD/MM/YYYY)");
-
-    
   }
 
   callback(options, event, context);
@@ -103,35 +98,34 @@ function user4_1handler(options, event, context, callback) {
 
   if (/^\d+(\.\d{1,2})?$/.test(event.message)) {
 
-    let amount = event.message;
+      let amount = event.message;
 
-    context.simpledb.roomleveldata.amount = amount;
+      context.simpledb.roomleveldata.amount = amount;
 
-    options.next_state = "bot10";
+      options.next_state = "bot10";
   } else {
-    context.sendResponse("⚠️ Please provide a numbers as input");
+      context.sendResponse("Please provide a numbers as input");
 
-    options.next_state = "bot4";
+      options.next_state = "bot4";
   }
 
   callback(options, event, context);
 }
 
 function user4_2handler(options, event, context, callback) {
-  
+
   if (event.message == 1) {
 
-    let QRcode = "QRcode";
+      let QRcode = "QRcode";
 
-    context.simpledb.roomleveldata.fraudtype = QRcode;
+      context.simpledb.roomleveldata.fraudtype = QRcode;
 
-    options.next_state = "bot10_1";
-  }
-  else{
-    
-    context.sendResponse("⚠️ Please select the option number as given");
+      options.next_state = "bot10_1";
+  } else {
 
-    options.next_state = "bot10";
+      context.sendResponse("⚠️ Please select the option number as given");
+
+      options.next_state = "bot10";
 
   }
   callback(options, event, context);
@@ -139,38 +133,37 @@ function user4_2handler(options, event, context, callback) {
 
 function userdetailhandler1(options, event, context, callback) {
   if (event.message == 1 || event.message == 2) {
-    //  options.next_state="bot6";
-    if (event.message == 1) {
-      let Gallery = "Scanned From Gallery";
-      context.simpledb.roomleveldata.fraudMethod = Gallery;
-    } else {
-      let phoneCamera = "Scanned From Phone Camera";
-      context.simpledb.roomleveldata.fraudMethod = phoneCamera;
-    }
+      //  options.next_state="bot6";
+      if (event.message == 1) {
+          let Gallery = "Scanned From Gallery";
+          context.simpledb.roomleveldata.fraudMethod = Gallery;
+      } else {
+          let phoneCamera = "Scanned From Phone Camera";
+          context.simpledb.roomleveldata.fraudMethod = phoneCamera;
+      }
   } else {
-    options.next_state = "bot10_1";
+      options.next_state = "bot10_1";
   }
   callback(options, event, context);
 }
 
 function user4_3handler(options, event, context, callback) {
-  
+
   if (event.message == 2) {
 
-    let paymentlink = "PaymentLink";
+      let paymentlink = "PaymentLink";
 
-    context.simpledb.roomleveldata.fraudtype = paymentlink;
+      context.simpledb.roomleveldata.fraudtype = paymentlink;
 
-    options.next_state = "bot10_2";
-  }
-  else if(event.message ==0){
+      options.next_state = "bot10_2";
+  } else if (event.message == 0) {
 
-   
-    context.sendResponse("⚠️ Please select the option number as given");
 
-    options.next_state = "bot10";
-  
-    
+      context.sendResponse("⚠️ Please select the option number as given");
+
+      options.next_state = "bot10";
+
+
 
   }
 
@@ -178,30 +171,30 @@ function user4_3handler(options, event, context, callback) {
 }
 
 function userdetailhandler2(options, event, context, callback) {
-  
-  if (
-    /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(
-      event.message
-    )
-  ) {
-    let paylink = event.message;
 
-    context.simpledb.roomleveldata.fraudMethod = paylink;
+  if (
+      /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(
+          event.message
+      )
+  ) {
+      let paylink = event.message;
+
+      context.simpledb.roomleveldata.fraudMethod = paylink;
   } else {
-    options.next_state = "bot10_2";
+      options.next_state = "bot10_2";
   }
 
   callback(options, event, context);
 }
 
 function user4_4handler(options, event, context, callback) {
- 
+
   if (event.message == 3) {
-    let sendMessage = "SendMessage through phone";
+      let sendMessage = "SendMessage through phone";
 
-    context.simpledb.roomleveldata.fraudtype = sendMessage;
+      context.simpledb.roomleveldata.fraudtype = sendMessage;
 
-    options.next_state = "bot10_3";
+      options.next_state = "bot10_3";
   }
 
   callback(options, event, context);
@@ -210,27 +203,27 @@ function user4_4handler(options, event, context, callback) {
 function userdetailhandler3(options, event, context, callback) {
 
   if (/^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message)) {
-    let mobilefraud = "mobilenumberfraud";
+      let mobilefraud = "mobilenumberfraud";
 
-    context.simpledb.roomleveldata.fraudMethod = mobilefraud;
+      context.simpledb.roomleveldata.fraudMethod = mobilefraud;
 
-   
+
   } else {
-    context.sendResponse("⚠️ Please provide the valid phone number");
+      context.sendResponse("Please provide the valid phone number");
 
-    options.next_state = "bot10_3";
+      options.next_state = "bot10_3";
   }
   callback(options, event, context);
 }
 
 function user4_5handler(options, event, context, callback) {
-  
+
   if (event.message == 4) {
-    let app = "Fraudapp";
+      let app = "Fraudapp";
 
-    context.simpledb.roomleveldata.fraudtype = app;
+      context.simpledb.roomleveldata.fraudtype = app;
 
-    options.next_state = "bot10_4";
+      options.next_state = "bot10_4";
   }
 
   callback(options, event, context);
@@ -246,27 +239,25 @@ function userdetailhandler4(options, event, context, callback) {
 }
 
 function user4_6handler(options, event, context, callback) {
- 
+
   if (event.message == 5) {
 
-    console.log('Test5')
+      console.log('Test5')
 
-    let otherDetails = event.message;
+      let otherDetails = event.message;
 
-    context.simpledb.roomleveldata.fraudtype = otherDetails;
+      context.simpledb.roomleveldata.fraudtype = otherDetails;
 
-    options.next_state = "bot10_5";
+      options.next_state = "bot10_5";
+  } else if (event.message == 0 || event.message > 5) {
+
+
+      context.sendResponse("⚠️ Please select the option number as given");
+
+      options.next_state = "bot10";
   }
- 
-  else if(event.message ==0 || event.message>5){
 
-   
-    context.sendResponse("⚠️ Please select the option number as given");
-
-    options.next_state = "bot10";
-  }
-  
-    callback(options, event, context);
+  callback(options, event, context);
 
 }
 
@@ -295,7 +286,7 @@ function user6_1handler(options, event, context, callback) {
 }
 
 function user7_1handler(options, event, context, callback) {
-  
+
   let description = event.message;
 
   context.simpledb.roomleveldata.description = description;
@@ -304,45 +295,41 @@ function user7_1handler(options, event, context, callback) {
 
   callback(options, event, context);
 }
+
 function user8_1handler(options, event, context, callback) {
   if (/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF)$/.test(event.message)) {
-    let format = event.message;
+      let format = event.message;
 
-    context.simpledb.roomleveldata.format = format;
+      context.simpledb.roomleveldata.format = format;
 
-    console.log("test7 ", format);
+      console.log("test7 ", format);
 
-    options.next_state = "bot9";
+      options.next_state = "bot9";
   } else {
-    context.sendResponse(
-      "⚠️ Please provide the format in one of the following(jpg,jpeg,gif,doc,pdf)"
-    );
+      context.sendResponse(
+          "Please provide the format in one of the following(jpg,jpeg,gif,doc,pdf)"
+      );
 
-    options.next_state = "bot8";
+      options.next_state = "bot8";
   }
   callback(options, event, context);
 }
+
 function user9_1handler(options, event, context, callback) {
   if (event.message == 1) {
-    getdata.store(
-      context.simpledb.roomleveldata.phone,
-      context.simpledb.roomleveldata.ref,
-      context.simpledb.roomleveldata.date,
-      context.simpledb.roomleveldata.amount,
-      context.simpledb.roomleveldata.fraudtype,
-      context.simpledb.roomleveldata.fraudMethod,
-      context.simpledb.roomleveldata.description,
-      context.simpledb.roomleveldata.format
-    );
+      getdata.store(
+          context.simpledb.roomleveldata.UserType,
+          context.simpledb.roomleveldata.phone,
+          context.simpledb.roomleveldata.ref,
+          context.simpledb.roomleveldata.date,
+          context.simpledb.roomleveldata.amount,
+          context.simpledb.roomleveldata.fraudtype,
+          context.simpledb.roomleveldata.fraudMethod,
+          context.simpledb.roomleveldata.description,
+          context.simpledb.roomleveldata.format
+      );
 
-    options.next_state = "bot20";
-  }
-  else {
-    context.sendResponse(
-      "⚠️ Please click 1 to submit the data"
-    );
-
-    options.next_state = "bot9";
+      options.next_state = "bot20";
   }
 
   callback(options, event, context);
