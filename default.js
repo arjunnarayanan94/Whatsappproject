@@ -18,7 +18,7 @@ function user2handler(options, event, context, callback) {
 
     options.next_state = "bot2";
   } else {
-    context.sendResponse("Invalid phone number please try again");
+    context.sendResponse("⚠️Invalid phone number please try again");
 
     options.next_state = "bot1_1";
   }
@@ -46,23 +46,30 @@ function user3handler(options, event, context, callback) {
 function user4handler(options, event, context, callback) {
   let date = new Date();
 
-  var month = date.getMonth();
+  let month = date.getMonth()+1;
 
-  var day = date.getDate()+1;
+  let day = date.getDate();
 
-  var year = date.getFullYear();
+  let year = date.getFullYear();
 
-  var currdate = day + "/" + month + "/" + year;
+  
+  let currdate = day + "/" + month + "/" + year;
 
   console.log('Check ',currdate);
-  let mydate = event.message;
 
+  //  console.log('TYpe',typeof(event.message))
+ 
+  let mydate = String(event.message);
+  console.log(mydate);
+  console.log("Mydate ",mydate);
   if (
     /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/.test(
       event.message
     )
   ) {
-    if (currdate >= mydate) {
+    if (currdate > mydate) {
+    
+
       let date1 = event.message;
 
       context.simpledb.roomleveldata.date = date1;
@@ -98,7 +105,7 @@ function user4_1handler(options, event, context, callback) {
 
     options.next_state = "bot10";
   } else {
-    context.sendResponse("Please provide a numbers as input");
+    context.sendResponse("⚠️ Please provide a numbers as input");
 
     options.next_state = "bot4";
   }
@@ -205,7 +212,7 @@ function userdetailhandler3(options, event, context, callback) {
 
    
   } else {
-    context.sendResponse("Please provide the valid phone number");
+    context.sendResponse("⚠️ Please provide the valid phone number");
 
     options.next_state = "bot10_3";
   }
@@ -304,7 +311,7 @@ function user8_1handler(options, event, context, callback) {
     options.next_state = "bot9";
   } else {
     context.sendResponse(
-      "Please provide the format in one of the following(jpg,jpeg,gif,doc,pdf)"
+      "⚠️ Please provide the format in one of the following(jpg,jpeg,gif,doc,pdf)"
     );
 
     options.next_state = "bot8";
@@ -325,6 +332,13 @@ function user9_1handler(options, event, context, callback) {
     );
 
     options.next_state = "bot20";
+  }
+  else {
+    context.sendResponse(
+      "⚠️ Please click 1 to submit the data"
+    );
+
+    options.next_state = "bot9";
   }
 
   callback(options, event, context);
