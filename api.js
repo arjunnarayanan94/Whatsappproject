@@ -1,6 +1,7 @@
 var axios = require("axios");
 
 let store = async (
+  UserType,
   mobileNo,
   bankRef,
   transactionDate,
@@ -19,7 +20,7 @@ let store = async (
 
     inputType: "TEXT",
     
-    userType: "self",
+    userType: UserType,
 
     mobileNo: mobileNo,
 
@@ -66,6 +67,7 @@ let store = async (
     .then(function (response) {
       console.log("Hello ", JSON.stringify(response.data));
       console.log("test15", response.data);
+      console.log(data);
     })
     .catch(function (error) {
       console.log(error);
