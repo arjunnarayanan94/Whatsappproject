@@ -1,9 +1,15 @@
 const getdata = require("./api.js");
 
 function user1handler(options, event, context, callback) {
-  options.next_state = "bot1_1";
 
-  console.log("test", event.message);
+  if (event.message==1 || event.message ==2){
+  options.next_state = "bot1_1";
+  }
+else{
+  context.sendResponse("⚠️Invalid option number please try again");
+  options.next_state = main;
+}
+
 
   callback(options, event, context);
 }
