@@ -52,15 +52,13 @@ function user4handler(options, event, context, callback) {
 
   let year = date.getFullYear();
 
-  
   let currdate = day + "/" + month + "/" + year;
 
   console.log('Check ',currdate);
 
   //  console.log('TYpe',typeof(event.message))
  
-  let mydate = String(event.message);
-  console.log(mydate);
+  let mydate = event.message;
   console.log("Mydate ",mydate);
   if (
     /^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/.test(
