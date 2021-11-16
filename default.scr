@@ -41,7 +41,7 @@
                         user8_1:asj
                             bot9:I acknowledge & understand that NPCI is not bound by any Legal obligations to resolve highlighted concerns/refund lost money and that NPCI can’t be made party to address his/her grievances. To register your complaint please press *1*.
                                 user9_1:1
-                                    bot20:Your complaint is registered with us and reference number is XXXXX.\n \n👉🏻 Kindly report the fraud to your Bank and file police complaint for resolution. \n \n👉🏻  You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260 
+                                    bot20: {{userPublicationPreferenceResp}}
                                         :call default.main  
                         
                                                             
