@@ -1,5 +1,8 @@
 var axios = require("axios");
-
+const {
+  ModelBuildPage,
+} = require("twilio/lib/rest/autopilot/v1/assistant/modelBuild");
+let abc;
 let store = async (
   UserType,
   mobileNo,
@@ -19,7 +22,7 @@ let store = async (
     source: "whatsapp",
 
     inputType: "TEXT",
-    
+
     userType: UserType,
 
     mobileNo: mobileNo,
@@ -63,15 +66,28 @@ let store = async (
     data: data,
   };
 
-  axios(config)
-    .then(function (response) {
-      console.log("Hello ", JSON.stringify(response.data));
-      console.log("test15", response.data);
-      console.log(data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log("Hello ", JSON.stringify(response.data));
+
+        try {
+          let a = JSON.stringify(response.data);
+          const ref = JSON.parse(a);
+          const result = ref.referenceId;
+
+          resolve(result);
+        } catch (err) {
+          resolve();
+        }
+      })
+      .catch(function (error) {
+        reject(err);
+        console.log(error);
+      });
+  });
 };
 
 exports.store = store;
+// module.exports=result;
+// exports.result=result;
