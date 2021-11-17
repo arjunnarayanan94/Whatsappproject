@@ -311,7 +311,7 @@ function user8_1handler(options, event, context, callback) {
 async function user9_1handler(options, event, context, callback) {
 
   if (event.message == 1) {
-    let UserType = context.simpledb.roomleveldata.UserType;
+    let userType = context.simpledb.roomleveldata.UserType;
     let phone = context.simpledb.roomleveldata.phone;
     let ref = context.simpledb.roomleveldata.ref;
     let date = context.simpledb.roomleveldata.date;
@@ -322,7 +322,7 @@ async function user9_1handler(options, event, context, callback) {
     let format = context.simpledb.roomleveldata.format;
 
     let result = await getdata.store(
-      UserType,
+      userType,
       phone,
       ref,
       date,
