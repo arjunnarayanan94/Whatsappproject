@@ -1,4 +1,3 @@
-const { response } = require("express");
 
 const request = require("request");
 
@@ -165,7 +164,6 @@ function user4_3handler(options, event, context, callback) {
     options.next_state = "bot10_2";
   } else if (event.message == 0) {
     context.sendResponse("⚠️ Please select the option number as given");
-
     options.next_state = "bot10";
   }
 
@@ -218,6 +216,7 @@ function userdetailhandler3(options, event, context, callback) {
 function user4_5handler(options, event, context, callback) {
 
   if (event.message == 4) {
+
     let app = "Fraudapp";
 
     context.simpledb.roomleveldata.fraudtype = app;
