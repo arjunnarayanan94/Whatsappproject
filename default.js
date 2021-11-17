@@ -1,6 +1,4 @@
 
-const request = require("request");
-
 const getdata = require("./api.js");
 
 function user1handler(options, event, context, callback) {
