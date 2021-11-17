@@ -297,6 +297,7 @@ function user8_1handler(options, event, context, callback) {
     context.simpledb.roomleveldata.format = format;
 
     options.next_state = "bot9";
+
   } else {
     
     context.sendResponse(
@@ -309,6 +310,7 @@ function user8_1handler(options, event, context, callback) {
 }
 
 async function user9_1handler(options, event, context, callback) {
+
   if (event.message == 1) {
     let UserType = context.simpledb.roomleveldata.UserType;
     let phone = context.simpledb.roomleveldata.phone;
