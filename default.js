@@ -5,6 +5,7 @@ const request = require("request");
 const getdata = require("./api.js");
 
 function user1handler(options, event, context, callback) {
+
   if (event.message == 1) {
 
     context.simpledb.roomleveldata.UserType = "Self";
@@ -16,7 +17,9 @@ function user1handler(options, event, context, callback) {
     context.simpledb.roomleveldata.UserType = "Others";
 
     options.next_state = "bot1_1";
+
   } else {
+
     context.sendResponse("⚠️Invalid option number please try again");
 
     options.next_state = main;
@@ -25,17 +28,22 @@ function user1handler(options, event, context, callback) {
 }
 
 function user2handler(options, event, context, callback) {
+
   if (/^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message)) {
+
     let phone = event.message;
 
     context.simpledb.roomleveldata.phone = phone;
 
     options.next_state = "bot2";
+
   } else {
+
     context.sendResponse("Invalid phone number please try again");
 
     options.next_state = "bot1_1";
   }
+
   callback(options, event, context);
 }
 
@@ -68,14 +76,16 @@ function user4handler(options, event, context, callback) {
     )
   ) {
     var dateParts = mydate.split("/");
-    // month is 0-based, that's why we need dataParts[1] - 1
+    
     var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+
     if (date >= dateObject) {
       let date1 = event.message;
 
       context.simpledb.roomleveldata.date = date1;
 
       options.next_state = "bot4";
+
     } else {
       context.sendResponse(
         "⚠️ Future date cannot be accepted.Please try again"
@@ -96,6 +106,7 @@ function user4handler(options, event, context, callback) {
 
 function user4_1handler(options, event, context, callback) {
   if (/^\d+(\.\d{1,2})?$/.test(event.message)) {
+
     let amount = event.message;
 
     context.simpledb.roomleveldata.amount = amount;
@@ -112,6 +123,7 @@ function user4_1handler(options, event, context, callback) {
 
 function user4_2handler(options, event, context, callback) {
   if (event.message == 1) {
+
     let QRcode = "QRcode";
 
     context.simpledb.roomleveldata.fraudtype = QRcode;
@@ -126,7 +138,9 @@ function user4_2handler(options, event, context, callback) {
 }
 
 function userdetailhandler1(options, event, context, callback) {
+
   if (event.message == 1 || event.message == 2) {
+
     if (event.message == 1) {
       let Gallery = "Scanned From Gallery";
 
@@ -176,6 +190,7 @@ function userdetailhandler2(options, event, context, callback) {
 
 function user4_4handler(options, event, context, callback) {
   if (event.message == 3) {
+
     let sendMessage = "SendMessage through phone";
 
     context.simpledb.roomleveldata.fraudtype = sendMessage;
@@ -188,6 +203,7 @@ function user4_4handler(options, event, context, callback) {
 
 function userdetailhandler3(options, event, context, callback) {
   if (/^(\+\d{1,3}[- ]?)?\d{10}$/.test(event.message)) {
+
     let mobilefraud = "mobilenumberfraud";
 
     context.simpledb.roomleveldata.fraudMethod = mobilefraud;
@@ -200,6 +216,7 @@ function userdetailhandler3(options, event, context, callback) {
 }
 
 function user4_5handler(options, event, context, callback) {
+
   if (event.message == 4) {
     let app = "Fraudapp";
 
@@ -212,6 +229,7 @@ function user4_5handler(options, event, context, callback) {
 }
 
 function userdetailhandler4(options, event, context, callback) {
+
   let appname = event.message;
 
   context.simpledb.roomleveldata.fraudMethod = appname;
@@ -220,6 +238,7 @@ function userdetailhandler4(options, event, context, callback) {
 }
 
 function user4_6handler(options, event, context, callback) {
+
   if (event.message == 5) {
 
     let otherDetails = event.message;
@@ -227,7 +246,9 @@ function user4_6handler(options, event, context, callback) {
     context.simpledb.roomleveldata.fraudtype = otherDetails;
 
     options.next_state = "bot10_5";
+
   } else if (event.message == 0 || event.message > 5) {
+
     context.sendResponse("⚠️ Please select the option number as given");
 
     options.next_state = "bot10";
@@ -237,6 +258,7 @@ function user4_6handler(options, event, context, callback) {
 }
 
 function userdetailhandler5(options, event, context, callback) {
+
   let otherDetails1 = event.message;
 
   context.simpledb.roomleveldata.fraudMethod = otherDetails1;
@@ -245,6 +267,7 @@ function userdetailhandler5(options, event, context, callback) {
 }
 
 function user6_1handler(options, event, context, callback) {
+
   let explain = event.message;
 
   context.simpledb.roomleveldata.description = explain;
@@ -255,6 +278,7 @@ function user6_1handler(options, event, context, callback) {
 }
 
 function user7_1handler(options, event, context, callback) {
+
   let description = event.message;
 
   context.simpledb.roomleveldata.description = description;
@@ -265,14 +289,16 @@ function user7_1handler(options, event, context, callback) {
 }
 
 function user8_1handler(options, event, context, callback) {
+
   if (/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF)$/.test(event.message)) {
-    
     let format = event.message;
 
     context.simpledb.roomleveldata.format = format;
 
     options.next_state = "bot9";
+
   } else {
+    
     context.sendResponse(
       "Please provide the format in one of the following(jpg,jpeg,gif,doc,pdf)"
     );
@@ -283,24 +309,33 @@ function user8_1handler(options, event, context, callback) {
 }
 
 async function user9_1handler(options, event, context, callback) {
+
   if (event.message == 1) {
-   
+    let UserType = context.simpledb.roomleveldata.UserType;
+    let phone = context.simpledb.roomleveldata.phone;
+    let ref = context.simpledb.roomleveldata.ref;
+    let date = context.simpledb.roomleveldata.date;
+    let amount = context.simpledb.roomleveldata.amount;
+    let fraudtype = context.simpledb.roomleveldata.fraudtype;
+    let fraudMethod = context.simpledb.roomleveldata.fraudMethod;
+    let description = context.simpledb.roomleveldata.description;
+    let format = context.simpledb.roomleveldata.format;
+
     let result = await getdata.store(
-      context.simpledb.roomleveldata.UserType,
-      context.simpledb.roomleveldata.phone,
-      context.simpledb.roomleveldata.ref,
-      context.simpledb.roomleveldata.date,
-      context.simpledb.roomleveldata.amount,
-      context.simpledb.roomleveldata.fraudtype,
-      context.simpledb.roomleveldata.fraudMethod,
-      context.simpledb.roomleveldata.description,
-      context.simpledb.roomleveldata.format
+      UserType,
+      phone,
+      ref,
+      date,
+      amount,
+      fraudtype,
+      fraudMethod,
+      description,
+      format
     );
     options.data.userPublicationPreferenceResp =
       "Your complaint is registered with us and reference number is " +
       result +
       ".\n \n👉🏻 Kindly report the fraud to your Bank and file police complaint for resolution. \n \n👉🏻  You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260";
-    
   }
 
   callback(options, event, context);
