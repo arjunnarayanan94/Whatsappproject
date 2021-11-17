@@ -6,10 +6,13 @@ const getdata = require("./api.js");
 
 function user1handler(options, event, context, callback) {
   if (event.message == 1) {
+
     context.simpledb.roomleveldata.UserType = "Self";
 
     options.next_state = "bot1_1";
+
   } else if (event.message == 2) {
+
     context.simpledb.roomleveldata.UserType = "Others";
 
     options.next_state = "bot1_1";
@@ -285,8 +288,8 @@ function user8_1handler(options, event, context, callback) {
 
 async function user9_1handler(options, event, context, callback) {
   if (event.message == 1) {
-    // console.log("heyy",getdata.res);
-    let r = await getdata.store(
+   
+    let result = await getdata.store(
       context.simpledb.roomleveldata.UserType,
       context.simpledb.roomleveldata.phone,
       context.simpledb.roomleveldata.ref,
@@ -299,7 +302,7 @@ async function user9_1handler(options, event, context, callback) {
     );
     options.data.userPublicationPreferenceResp =
       "Your complaint is registered with us and reference number is " +
-      r +
+      result +
       ".\n \n👉🏻 Kindly report the fraud to your Bank and file police complaint for resolution. \n \n👉🏻  You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260";
     
   }
