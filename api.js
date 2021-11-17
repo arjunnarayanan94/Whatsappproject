@@ -85,5 +85,4 @@ let store = async (
 };
 
 exports.store = store;
-// module.exports=result;
-// exports.result=result;
+
