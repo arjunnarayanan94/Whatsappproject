@@ -221,7 +221,6 @@ function userdetailhandler4(options, event, context, callback) {
 
 function user4_6handler(options, event, context, callback) {
   if (event.message == 5) {
-    console.log("Test5");
 
     let otherDetails = event.message;
 
@@ -269,11 +268,10 @@ function user7_1handler(options, event, context, callback) {
 
 function user8_1handler(options, event, context, callback) {
   if (/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF)$/.test(event.message)) {
+    
     let format = event.message;
 
     context.simpledb.roomleveldata.format = format;
-
-    console.log("test7 ", format);
 
     options.next_state = "bot9";
   } else {
