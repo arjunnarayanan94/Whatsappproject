@@ -301,8 +301,7 @@ async function user9_1handler(options, event, context, callback) {
       "Your complaint is registered with us and reference number is " +
       r +
       ".\n \n👉🏻 Kindly report the fraud to your Bank and file police complaint for resolution. \n \n👉🏻  You can also register your complaint at https://cybercrime.gov.in/ or call on Helpline no – 155260";
-    // let bcd = getdata.store[referenceId];
-    // console.log('got ',bcd);
+    
   }
 
   callback(options, event, context);
