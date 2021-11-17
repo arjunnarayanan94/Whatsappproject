@@ -291,7 +291,6 @@ function user7_1handler(options, event, context, callback) {
 function user8_1handler(options, event, context, callback) {
 
   if (/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF)$/.test(event.message)) {
-
     let format = event.message;
 
     context.simpledb.roomleveldata.format = format;
