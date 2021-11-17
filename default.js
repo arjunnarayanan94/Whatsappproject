@@ -249,8 +249,6 @@ function user6_1handler(options, event, context, callback) {
 
   context.simpledb.roomleveldata.description = explain;
 
-  console.log("test6 ", explain);
-
   options.next_state = "bot7";
 
   callback(options, event, context);
