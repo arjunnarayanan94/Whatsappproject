@@ -265,11 +265,7 @@ function user7_1handler(options, event, context, callback) {
 }
 
 function user8_1handler(options, event, context, callback) {
-console.log('Event8 ',event.message);
-  // if (
-  //   /^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF|DOCX|docx|PNG|png)$/.test(
-  //     event.message
-  //   )|| (event.messageobj.type == "image"))
+
   if(event.messageobj.type=="image" || event.messageobj.type=="file" & !( /^.*\.(txt)$/.test(
         event.message
       ) ))
