@@ -9,7 +9,7 @@
                                 user4: abcd
                                     bot4:What was the transaction amount(INR)💸
                                         user4_1: 1
-                                            bot10:Please share the type of fraud that took place:\n1️⃣.Have you scanned any QR code? \n2️⃣.Have you clicked on any payment link?\n3️⃣.Have you sent any message from your phone?\n4️⃣.Have you downloaded any app like Anydesk or Spring SMS?\n5️⃣.Others
+                                            bot10:Please share the type of fraud that took place:\n1️⃣ Have you scanned any QR code? \n2️⃣ Have you clicked on any payment link?\n3️⃣ Have you sent any message from your phone?\n4️⃣ Have you downloaded any app like Anydesk or Spring SMS?\n5️⃣ Others
                                                 user11:1
                                                     bot10_1:Scanned from gallery or from phone camera.(Press 1 for Scanned from gallery and 2 for phone camera) \n 1️⃣ Scanned from gallery. \n 2️⃣ for phone camera
                                                         user11a:1
