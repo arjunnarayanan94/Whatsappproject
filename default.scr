@@ -3,7 +3,7 @@
         user1:1
             bot1_1:Please enter your bank registered mobile number[10 Digit numeric]📱.
                 user2:9819379850
-                    bot2: Okay.Please share your RRN/UPI Txn ID/Bank Ref. No. (12 Digit numeric)🏦
+                    bot2: Okay. Please share your RRN/UPI Txn ID/Bank Ref. No. (12 Digit numeric)🏦
                         user3: 2
                             bot3: Please enter the Transaction Date (DD/MM/YYYY)🗓️
                                 user4: abcd
