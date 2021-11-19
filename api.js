@@ -1,6 +1,7 @@
 var axios = require("axios");
 let store = async (
   UserType,
+  sender,
   mobileNo,
   bankRef,
   transactionDate,
@@ -8,12 +9,13 @@ let store = async (
   fraudType,
   fraudMethod,
   description,
+  comment,
   attachmentUrl
 ) => {
   var data = JSON.stringify({
     feedback: "Need_improvement",
 
-    comment: "checking",
+    comment: comment,
 
     source: "whatsapp",
 
@@ -37,7 +39,7 @@ let store = async (
 
     attachmentUrl: attachmentUrl,
 
-    userToken: mobileNo,
+    userToken: sender,
   });
   console.log("Testsee ", data);
 
@@ -66,6 +68,7 @@ let store = async (
     axios(config)
       .then(function (response) {
         console.log("Hello ", JSON.stringify(response.data));
+        console.log('test12', data )
 
         try {
           let a = JSON.stringify(response.data);

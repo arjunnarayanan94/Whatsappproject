@@ -1,6 +1,12 @@
 const getdata = require("./api.js");
 
+const fs = require('fs');
+
 function user1handler(options, event, context, callback) {
+  let sender = event.sender.split(':');
+
+  context.simpledb.roomleveldata.sender=sender;
+
   if (event.message == 1) {
     context.simpledb.roomleveldata.UserType = "Self";
 
@@ -42,7 +48,8 @@ function user3handler(options, event, context, callback) {
     options.next_state = "bot3";
   } else {
     context.sendResponse(
-      "Invalid RRN/UPI Txn ID/Bank Ref. No  please try again"
+      
+      " ⚠️ Invalid RRN/UPI Txn ID/Bank  Ref. No  \n    Please try again"
     );
 
     options.next_state = "bot2";
@@ -238,9 +245,9 @@ function userdetailhandler5(options, event, context, callback) {
 }
 
 function user6_1handler(options, event, context, callback) {
-  let explain = event.message;
+  let description = event.message;
 
-  context.simpledb.roomleveldata.description = explain;
+  context.simpledb.roomleveldata.description=description;
 
   options.next_state = "bot7";
 
@@ -248,9 +255,9 @@ function user6_1handler(options, event, context, callback) {
 }
 
 function user7_1handler(options, event, context, callback) {
-  let description = event.message;
+  let comment = event.message;
 
-  context.simpledb.roomleveldata.description = description;
+  context.simpledb.roomleveldata.comment = comment;
 
   options.next_state = "bot8";
 
@@ -258,11 +265,15 @@ function user7_1handler(options, event, context, callback) {
 }
 
 function user8_1handler(options, event, context, callback) {
-  if (
-    /^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF|DOCX|docx)$/.test(
-      event.message
-    )
-  ) {
+console.log('Event8 ',event.message);
+  // if (
+  //   /^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|doc|DOC|pdf|PDF|DOCX|docx|PNG|png)$/.test(
+  //     event.message
+  //   )|| (event.messageobj.type == "image"))
+  if(event.messageobj.type=="image" || event.messageobj.type=="file" & !( /^.*\.(txt)$/.test(
+        event.message
+      ) ))
+   {
     let format = event.message;
 
     context.simpledb.roomleveldata.format = format;
@@ -270,7 +281,7 @@ function user8_1handler(options, event, context, callback) {
     options.next_state = "bot9";
   } else {
     context.sendResponse(
-      "Please provide the format in one of the following(jpg,jpeg,gif,doc,pdf)"
+      "Please provide the format in one of the following(jpg, jpeg, gif, png, doc, pdf)"
     );
 
     options.next_state = "bot8";
@@ -279,6 +290,7 @@ function user8_1handler(options, event, context, callback) {
 }
 
 async function user9_1handler(options, event, context, callback) {
+ 
   if (event.message == 1) {
     let userType = context.simpledb.roomleveldata.UserType;
     let phone = context.simpledb.roomleveldata.phone;
@@ -288,10 +300,13 @@ async function user9_1handler(options, event, context, callback) {
     let fraudtype = context.simpledb.roomleveldata.fraudtype;
     let fraudMethod = context.simpledb.roomleveldata.fraudMethod;
     let description = context.simpledb.roomleveldata.description;
+    let comment = context.simpledb.roomleveldata.comment;
+    let sender =  context.simpledb.roomleveldata.sender;
     let format = context.simpledb.roomleveldata.format;
 
     let result = await getdata.store(
       userType,
+      sender,
       phone,
       ref,
       date,
@@ -299,6 +314,7 @@ async function user9_1handler(options, event, context, callback) {
       fraudtype,
       fraudMethod,
       description,
+      comment,
       format
     );
     options.data.userPublicationPreferenceResp =
